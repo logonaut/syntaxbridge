@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomePage from '@/views/HomePage.vue'
+import CompareView from '@/views/CompareView.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomePage,
+    name: 'compare',
+    component: CompareView,
   },
   {
-    path: '/other',
-    name: 'other',
-    component: () => import('@/views/OtherPage.vue'),
+    path: '/saved',
+    name: 'saved',
+    component: () => import('@/views/SavedView.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
