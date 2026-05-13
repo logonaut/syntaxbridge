@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "syntaxbridge",
+  "compatibility_date": "2026-03-08",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+  },
+}

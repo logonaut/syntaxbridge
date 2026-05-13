@@ -14,3 +14,31 @@
   background-color: #0f172a;
   color: #e2e8f0;
 }
+
+/* Auth-view CSS variables — scoped so they don't override the main theme */
+.auth-layout {
+  --color-bg: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-2: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text: #0f172a;
+  --color-text-2: #475569;
+  --color-text-3: #94a3b8;
+  --color-accent: #1d9e75;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: rgba(29, 158, 117, 0.12);
+  --color-danger: #ef4444;
+  --color-danger-soft: rgba(239, 68, 68, 0.1);
+}
+
+.dark .auth-layout {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #283548;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-text: #f1f5f9;
+  --color-text-2: #94a3b8;
+  --color-text-3: #64748b;
+}
