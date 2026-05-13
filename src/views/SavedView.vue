@@ -44,7 +44,6 @@ function reopenEntry(entry) {
       <div
         class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900"
       >
-        <!-- Header -->
         <div
           class="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4 dark:border-slate-700 dark:bg-slate-800/50"
         >
@@ -56,7 +55,6 @@ function reopenEntry(entry) {
           </span>
         </div>
 
-        <!-- Empty state -->
         <div
           v-if="comparisons.length === 0"
           class="flex flex-col items-center justify-center gap-3 py-20 text-center"
@@ -71,7 +69,6 @@ function reopenEntry(entry) {
           </RouterLink>
         </div>
 
-        <!-- List -->
         <ul
           v-else
           class="divide-y divide-slate-100 px-4 py-3 dark:divide-slate-800"

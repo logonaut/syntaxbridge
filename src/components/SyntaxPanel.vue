@@ -6,13 +6,10 @@ defineProps({
   loading: { type: Boolean, default: false },
   error: { type: String, default: '' },
 })
-
 const emit = defineEmits(['retry'])
 </script>
-
 <template>
   <div class="flex flex-col gap-3 p-5">
-    <!-- Badge -->
     <div class="flex items-center gap-2">
       <span
         class="rounded-md px-2.5 py-0.5 font-mono text-[11px] font-semibold"
@@ -25,8 +22,6 @@ const emit = defineEmits(['retry'])
         {{ language || '—' }}
       </span>
     </div>
-
-    <!-- Loading skeleton -->
     <div
       v-if="loading"
       class="space-y-2.5"
@@ -40,8 +35,6 @@ const emit = defineEmits(['retry'])
         :style="`width: ${w}%`"
       ></div>
     </div>
-
-    <!-- Error state -->
     <div
       v-else-if="error"
       class="flex flex-col items-start gap-3 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-900/40 dark:bg-red-950/30"
@@ -64,8 +57,6 @@ const emit = defineEmits(['retry'])
         Try again
       </button>
     </div>
-
-    <!-- Code result -->
     <div
       v-else-if="code"
       class="overflow-x-auto rounded-lg border border-slate-200 bg-[#F8FAFC] p-4 dark:border-slate-700 dark:bg-slate-800/60"
@@ -75,8 +66,6 @@ const emit = defineEmits(['retry'])
         >{{ code }}</pre
       >
     </div>
-
-    <!-- Empty state -->
     <div
       v-else
       class="flex min-h-[160px] items-center justify-center rounded-lg border border-dashed border-slate-200 dark:border-slate-700"
