@@ -1,22 +1,29 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { apiFetch } from '@/lib/api'
 
 const router = useRouter()
+const comparisons = ref([])
+const loadError = ref('')
 
-function load() {
+async function load() {
   try {
-    return JSON.parse(localStorage.getItem('sb-comparisons') || '[]')
-  } catch {
-    return []
+    comparisons.value = (await apiFetch('/comparisons', { auth: true })) ?? []
+  } catch (err) {
+    loadError.value = err.message ?? 'Could not load saved comparisons.'
   }
 }
 
-const comparisons = ref(load())
+onMounted(load)
 
-function deleteEntry(id) {
-  comparisons.value = comparisons.value.filter((c) => c.id !== id)
-  localStorage.setItem('sb-comparisons', JSON.stringify(comparisons.value))
+async function deleteEntry(id) {
+  try {
+    await apiFetch(`/comparisons/${id}`, { method: 'DELETE', auth: true })
+    comparisons.value = comparisons.value.filter((c) => c.id !== id)
+  } catch {
+    // silently fail
+  }
 }
 
 function formatDate(iso) {
@@ -56,7 +63,15 @@ function reopenEntry(entry) {
         </div>
 
         <div
-          v-if="comparisons.length === 0"
+          v-if="loadError"
+          class="px-6 py-4 text-sm text-red-500"
+          role="alert"
+        >
+          {{ loadError }}
+        </div>
+
+        <div
+          v-else-if="comparisons.length === 0"
           class="flex flex-col items-center justify-center gap-3 py-20 text-center"
         >
           <span class="font-mono text-2xl">📂</span>
@@ -91,7 +106,7 @@ function reopenEntry(entry) {
                 >
               </div>
               <p class="text-sm text-slate-800 dark:text-slate-200">{{ entry.query }}</p>
-              <p class="font-mono text-[11px] text-slate-400">{{ formatDate(entry.savedAt) }}</p>
+              <p class="font-mono text-[11px] text-slate-400">{{ formatDate(entry.createdAt) }}</p>
             </div>
             <div class="flex shrink-0 items-center gap-1.5">
               <button
