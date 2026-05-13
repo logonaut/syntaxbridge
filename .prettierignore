@@ -3,3 +3,4 @@ dist-ssr
 coverage
 node_modules
 *.local
+wrangler.jsonc
